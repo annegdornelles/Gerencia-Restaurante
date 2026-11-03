@@ -6,3 +6,55 @@ desempilha();
 inserirPratos();
 imprimirPilha();
 */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include "pilha.h";
+#include "restaurante.h"    
+
+void inicializarPilha(Pilha *pilha){
+    pilha->topo = NULL;
+    pilha->quant = 0;
+}
+
+void empilhar(Pilha *pilha){
+    Prato *novoPrato = (Prato*)malloc(sizeof(Prato));
+    if(novoPrato == NULL){
+        printf("Erro ao alocar memoria para o novo prato.\n");
+        return;
+    }
+
+    novoPrato->prox = pilha->topo;
+    pilha->topo = novoPrato;
+    pilha->quant++;
+}
+
+void desempilhar(Pilha *pilha){
+    if(pilha->topo == NULL){
+        printf("\n Nao ha pratos na pilha\n");
+        return;
+    }
+
+    Prato *aux = pilha->topo;
+    pilha->topo = aux->prox;
+    free(aux);
+    pilha->quant--;
+}
+
+void imprimirPilha(Pilha *pilha){
+    Prato *aux = pilha->topo;
+
+    if(aux == NULL){
+        printf("\n Nao ha pratos na pilha\n");
+        return;
+    }
+
+    printf("\n Pratos na pilha:\n");
+
+    while(aux != NULL){
+        printf("Prato\n");
+        aux = aux->prox;
+    }
+
+    printf("Quantidade de pratos na pilha: %d\n", pilha->quant);
+}
