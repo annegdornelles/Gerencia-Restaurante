@@ -1,18 +1,13 @@
-#include<stdio.h>
-#include<stdbool.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
-typedef struct Mesa{
+typedef struct Mesa {
     int numero;
     bool ocupada;
-    int quantPessoasMesa;  
-    int comanda;  
+    int quantPessoasMesa;
+    int comanda;
 } Mesa;
-
-typedef struct Fila{
-    Grupo *inicio;
-    Grupo *fim;
-    int proxSenha;
-}Fila;
 
 typedef struct Grupo {
     int senha;
@@ -20,19 +15,35 @@ typedef struct Grupo {
     struct Grupo *prox;
 } Grupo;
 
-typedef struct Prato{
+typedef struct Fila {
+    Grupo *inicio;
+    Grupo *fim;
+    int proxSenha;
+} Fila;
+
+typedef struct Prato {
     struct Prato *prox;
 } Prato;
 
-typedef struct Pilha{
+typedef struct Pilha {
     Prato *topo;
     int quant;
-}Pilha;
+} Pilha;
 
-struct Restaurante{
+typedef struct Restaurante {
     int linhas;
     int colunas;
     Mesa **mesas;
     Fila fila;
     Pilha pilha;
-}Restaurante;
+} Restaurante;
+
+/*FUNCOES QUE FICAM AQUI:
+inserirMesas();
+inserirGrupo();
+ocupaMesa();
+liberaMesa();
+chamarGrupo();
+desistirFilaEspera();
+atualizarFila();
+*/

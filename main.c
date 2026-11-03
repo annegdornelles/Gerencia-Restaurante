@@ -6,22 +6,59 @@ int main(){
     menu();
 }
 
-int menu(){
-    //FUNCOES:
-    inserirMesas();//o usuario informa linha e coluna
-    inserirGrupo();//designa senha e caso necessario coloca na fila de espera. mas primeiro insere a quant de pessoas no grupo
-    //MEXE COM A FILA DE ESPERA:
-    ocupaMesa();//chamarGrupo() - ve se ele é separado ou nao. () e chama a mesa de acordo com a quantidade de pessoas do grupo
-    liberaMesa();//a mesa é liberada e o grupo que estava na fila de espera é chamado para ocupar a mesa. tem que ter uma funcao para ATUALIZAR isso tbm
-    desistirFilaEspera();
-    //MEXE COM A PILHA DE PRATOS:
-    retirarPratos();
-    inserirPratos();//mexe com pratos excedentes tambem e ajusta de acordo com a quantidade de pessoas
-    //IMPRESSAO:
-    imprimirPilha();
-    imprimirFila();//imprimir grupos na fila de espera
-    imprimirMesas();//imprimir mesas ocupadas e livres
+int menu() {
+    int opcao;
 
-    //VER A QUESTAO DOS NÓS
+    do {
+        printf("\n===== RESTAURANTE =====\n");
+        printf("1 - Abrir restaurante\n");
+        printf("2 - Chegada de grupo\n");
+        printf("3 - Liberar mesa\n");
+        printf("4 - Desistir da fila de espera\n");
+        printf("5 - Repor pratos\n");
+        printf("6 - Imprimir pilha de pratos\n");
+        printf("7 - Imprimir fila de espera\n");
+        printf("8 - Imprimir mesas\n");
+        printf("0 - Sair\n");
 
+        printf("Escolha: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                inserirMesas();
+                break;
+
+            case 2:
+                inserirGrupo();
+                break;
+
+            case 3:
+                liberaMesa();
+                break;
+
+            case 4:
+                desistirFilaEspera();
+                break;
+
+            case 5:
+                inserirPratos();
+                break;
+
+            case 6:
+                imprimirPilha();
+                break;
+
+            case 7:
+                imprimirFila();
+                break;
+
+            case 8:
+                imprimirMesas();
+                break;
+        }
+
+    } while (opcao != 0);
+
+    return 0;
 }
