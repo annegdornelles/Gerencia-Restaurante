@@ -7,7 +7,6 @@ typedef struct Mesa {
     int comanda;
 } Mesa;
 
-
 typedef struct Restaurante {
     int linhas;
     int colunas;
