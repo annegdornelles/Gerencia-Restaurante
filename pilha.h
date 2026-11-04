@@ -1,6 +1,9 @@
-void inicializaPilha(Pilha *pilha);
-void empilha(Pilha *pilha);
-void desempilha(Pilha *pilha);
+#include<stdio.h>
+#include<stdlib.h>
+
+void inicializarPilha(Pilha *pilha);
+void empilhar(Pilha *pilha);
+void desempilhar(Pilha *pilha);
 void imprimirPilha(Pilha *pilha);
 #ifndef PILHA_H
 #define PILHA_H

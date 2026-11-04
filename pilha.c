@@ -12,6 +12,15 @@ imprimirPilha();
 #include "pilha.h";
 #include "restaurante.h"    
 
+typedef struct Prato {
+    struct Prato *prox;
+} Prato;
+
+typedef struct Pilha {
+    Prato *topo;
+    int quant;
+} Pilha;
+
 void inicializarPilha(Pilha *pilha){
     pilha->topo = NULL;
     pilha->quant = 0;
