@@ -13,4 +13,9 @@ typedef struct Fila{
     int proxSenha;
 }Fila;
 
+inicializaFila(Fila *fila);
+insereFila(Fila *fila, int senha, int qtd);
+removeFila(Fila *fila);
+imprimirFila(Fila *fila);
+desistirFilaEspera(Fila *fila, int senha);
 #endif
