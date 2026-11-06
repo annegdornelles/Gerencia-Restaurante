@@ -10,16 +10,6 @@ imprimirPilha();
 #include<stdio.h>
 #include<stdlib.h>
 #include "pilha.h";
-#include "restaurante.h"    
-
-typedef struct Prato {
-    struct Prato *prox;
-} Prato;
-
-typedef struct Pilha {
-    Prato *topo;
-    int quant;
-} Pilha;
 
 void inicializarPilha(Pilha *pilha){
     pilha->topo = NULL;
@@ -38,7 +28,7 @@ void empilhar(Pilha *pilha){
     pilha->quant++;
 }
 
-void desempilhar(Pilha *pilha){
+void desempilhar(Pilha *pilha){ //talvez tenha que ser tipo int, nao sei =(
     if(pilha->topo == NULL){
         printf("\n Nao ha pratos na pilha\n");
         return;
@@ -66,4 +56,15 @@ void imprimirPilha(Pilha *pilha){
     }
 
     printf("Quantidade de pratos na pilha: %d\n", pilha->quant);
+}
+
+void inserirPratos(Pilha *pilha){
+    int qtd;
+    printf("Quantos pratos quer adicionar?\n");
+    scanf(" %d", &qtd);
+    
+    for(int i=0; i<qtd; i++){
+        empilhar(pilha);
+    }
+    printf("%d pratos adicionados na pilha\n", qtd);
 }
