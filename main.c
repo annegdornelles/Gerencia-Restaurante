@@ -1,12 +1,16 @@
 #include<stdio.h>
 #include<stdbool.h>
 #include<stdlib.h>
+#include "restaurante.h"
+#include "fila.h"
+#include "pilha.h"
 
 int main(){
-    menu();
+    Restaurante restaurante = {0};
+    menu(&restaurante);
 }
 
-int menu() {
+int menu(Restaurante *restaurante) {
     int opcao;
 
     do {
@@ -26,36 +30,43 @@ int menu() {
 
         switch (opcao) {
             case 1:
-                inserirMesas();
+                inserirMesas(restaurante);
                 break;
 
             case 2:
-                inserirGrupo();
+                inserirGrupo(restaurante);
                 break;
 
             case 3:
-                liberaMesa();
+                liberaMesa(restaurante);
                 break;
 
             case 4:
-                desistirFilaEspera();
+                desistirFilaEspera(restaurante);
                 break;
 
             case 5:
-                inserirPratos();
+                inserirPratos(&restaurante->pilha);
                 break;
 
             case 6:
-                imprimirPilha();
+                imprimirPilha(&restaurante->pilha);
                 break;
 
             case 7:
-                imprimirFila();
+                imprimirFila(&restaurante->fila);
                 break;
 
             case 8:
-                imprimirMesas();
+                imprimirMesas(restaurante);
                 break;
+
+            case 0:
+                printf("Encerrando programa...\n");
+                break;
+
+            default:
+                printf("Opcao invalida\n");
         }
 
     } while (opcao != 0);

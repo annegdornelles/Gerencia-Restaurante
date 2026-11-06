@@ -1,10 +1,15 @@
+#ifndef RESTAURANTE_H
+#define RESTAURANTE_H
 #include <stdbool.h>
+#include "fila.h"
+#include "pilha.h"
 
 typedef struct Mesa {
     int numero;
     bool ocupada;
     int quantPessoasMesa;
     int comanda;
+    int quantPratosDisp;
 } Mesa;
 
 typedef struct Restaurante {
@@ -29,3 +34,4 @@ void chamarGrupo(Restaurante *restaurante);
 void desistirFilaEspera(Restaurante *restaurante);
 
 void atualizarFila(Restaurante *restaurante);
+#endif

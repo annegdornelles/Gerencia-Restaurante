@@ -54,6 +54,7 @@ void inserirMesas(Restaurante *restaurante){
             restaurante->mesas[i][j].ocupada = false;
             restaurante->mesas[i][j].quantPessoasMesa = 0;
             restaurante->mesas[i][j].comanda = 0;
+            restaurante->mesas[i][j].quantPratos = 4;
         }
     }
 
@@ -103,7 +104,7 @@ int ocupaMesa(Restaurante *restaurante, int quantidade, int comanda){
 
     for (i=0;i<restaurante->linhas;i++){
         for (j=0;j<restaurante->colunas;j++){
-            if(restaurante->mesas[i][j].ocupada == false){
+            if(restaurante->mesas[i][j].ocupada == false && restaurante->mesas[i][j].quantPratosDisp==4){ //adicionei essa verif 
                 restaurante->mesas[i][j].ocupada = true;
                 if(restantes>=4){
                     restaurante->mesas[i][j].quantPessoasMesa = 4;
@@ -115,6 +116,13 @@ int ocupaMesa(Restaurante *restaurante, int quantidade, int comanda){
                 }
 
                 restaurante->mesas[i][j].comanda = comanda;
+                int pratosExcedentes = 4 - restaurante->mesas[i][j].quantPessoasMesa;
+
+                for(int k = 0; k < pratosExcedentes; k++){
+                    if(empilhar(&restaurante->pilha)){
+                        restaurante->mesas[i][j].quantPratos--;
+                    }
+                }
 
                 printf("Mesa %d ocupada com %d pessoas e comanda %d.\n", restaurante->mesas[i][j].numero, restaurante->mesas[i][j].quantPessoasMesa, restaurante->mesas[i][j].comanda);
 
@@ -181,8 +189,19 @@ void liberaMesa(Restaurante *restaurante){
                 restaurante->mesas[i][j].ocupada = false;
                 restaurante->mesas[i][j].quantPessoasMesa = 0;
                 restaurante->mesas[i][j].comanda = 0;
+                if(restaurante->pilha.quant >= 4){
+                    for(int k = 0; k < 4; k++){
+                        desempilhar(&restaurante->pilha);
+                    }
+                    restaurante->mesas[i][j].quantPratos = 4;
+                    printf("Mesa arrumada\n");
+                }
+                else{
+                    restaurante->mesas[i][j].quantPratos = 0;
+                    printf("Nao ha pratos suficientes\n");
+                }
 
-                printf("Mesa %d liberada!\n", numero);
+                printf("Mesa %d liberada\n", numero);
 
                 chamarGrupo(restaurante);
 
@@ -192,7 +211,7 @@ void liberaMesa(Restaurante *restaurante){
     }
 
     if (encontrou == 0) {
-        printf("Mesa nao encontrada.\n");
+        printf("Mesa nao encontrada\n");
     }
 }
 
@@ -204,10 +223,10 @@ void desistirFilaEspera(Restaurante *restaurante) {
     scanf("%d", &senha);
 
     if (removeGrupo(&restaurante->fila, senha)) {
-        printf("Grupo removido da fila!\n");
-
+        printf("Grupo removido da fila\n");
         atualizarFila(restaurante);
-    } else {
-        printf("Grupo nao encontrado na fila.\n");
+    } 
+    else {
+        printf("Grupo nao encontrado na fila\n");
     }
 }
