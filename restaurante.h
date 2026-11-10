@@ -10,6 +10,7 @@ typedef struct Mesa {
     int quantPessoasMesa;
     int comanda;
     int quantPratosDisp;
+    int quantPratos;
 } Mesa;
 
 typedef struct Restaurante {
