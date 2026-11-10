@@ -16,16 +16,17 @@ void inicializarPilha(Pilha *pilha){
     pilha->quant = 0;
 }
 
-void empilhar(Pilha *pilha){
+bool empilhar(Pilha *pilha){
     Prato *novoPrato = (Prato*)malloc(sizeof(Prato));
     if(novoPrato == NULL){
         printf("Erro ao alocar memoria para o novo prato.\n");
-        return;
+        return false;
     }
 
     novoPrato->prox = pilha->topo;
     pilha->topo = novoPrato;
     pilha->quant++;
+    return true;
 }
 
 void desempilhar(Pilha *pilha){
