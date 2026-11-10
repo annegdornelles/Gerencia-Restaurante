@@ -5,6 +5,8 @@
 #include "fila.h"
 #include "pilha.h"
 
+int menu(Restaurante *restaurante);
+
 int main(){
     Restaurante restaurante = {0};
     menu(&restaurante);

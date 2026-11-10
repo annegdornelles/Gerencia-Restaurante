@@ -1,86 +1,104 @@
-/*
-FUNCOES QUE FICAM AQUI:
-inicializaFila();
-insereFila();
-removeFila();
-imprimirFila();
-desistirFilaEspera();
-*/
+
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "fila.h"
 
-void inicializarFila(Fila *fila){
-    fila->inicio=NULL;
-    fila->fim=NULL;
+void inicializarFila(Fila *fila)
+{
+    fila->inicio = NULL;
+    fila->fim = NULL;
     fila->proxSenha = 1;
 }
 
-void inserirFila(Fila *fila, int senha, int qtd){
-    Grupo *p = (Grupo*)malloc(sizeof(Grupo));//aloca novo grupo
-    if(p==NULL){
+void inserirFila(Fila *fila, int senha, int qtd)
+{
+    Grupo *p = (Grupo*)malloc(sizeof(Grupo));
+
+    if (p == NULL)
+    {
         printf("erro ao alocar\n");
         return;
     }
+
     p->senha = senha;
     p->quantPessoasGrupo = qtd;
-    p->prox= NULL;
-    
-    if(fila->inicio == NULL){
+    p->prox = NULL;
+
+    if (fila->inicio == NULL)
+    {
         fila->inicio = p;
         fila->fim = p;
     }
-    else{
+    else
+    {
         fila->fim->prox = p;
         fila->fim = p;
     }
 }
 
-void removerFila(Fila *fila){
-    if(fila->inicio==NULL){
+void removerFila(Fila *fila)
+{
+    if (fila->inicio == NULL)
+    {
         return;
     }
+
     Grupo *aux = fila->inicio;
     fila->inicio = aux->prox;
 
-    if(fila->inicio==NULL){
+    if (fila->inicio == NULL)
+    {
         fila->fim = NULL;
     }
     free(aux);
 }
 
-void imprimirFila(Fila *fila){
+void imprimirFila(Fila *fila)
+{
     Grupo *aux = fila->inicio;
     int grupos = 0;
     int pessoas = 0;
-    if(aux == NULL){
+
+    if (aux == NULL)
+    {
         printf("Nao existem grupos esperando\n");
         return;
     }
-    while(aux !=NULL){
+
+    while (aux != NULL)
+    {
         grupos++;
         pessoas = pessoas + aux->quantPessoasGrupo;
         printf("Grupo %d aguarda por %d lugares\n", aux->senha, aux->quantPessoasGrupo);
         aux = aux->prox;
     }
+
     printf("Total de grupos esperando: %d\n", grupos);
     printf("Total de pessoas esperando: %d\n", pessoas);
-
 }
-int desistirFilaEspera(Fila *fila, int senha){
+
+/* retorna 1 se removeu e 0 se a senha nao esta na fila */
+int removerGrupo(Fila *fila, int senha)
+{
     Grupo *aux = fila->inicio;
-    Grupo *ant =NULL;
-    while(aux !=NULL){
-        if(aux->senha==senha){
-            if(ant==NULL){
+    Grupo *ant = NULL;
+
+    while (aux != NULL)
+    {
+        if (aux->senha == senha)
+        {
+            if (ant == NULL)
+            {
                 fila->inicio = aux->prox;
             }
-            else{
+            else
+            {
                 ant->prox = aux->prox;
             }
 
-            if(aux==fila->fim){
+            if (aux == fila->fim)
+            {
                 fila->fim = ant;
             }
             free(aux);
@@ -92,3 +110,10 @@ int desistirFilaEspera(Fila *fila, int senha){
     return 0;
 }
 
+void esvaziarFila(Fila *fila)
+{
+    while (fila->inicio != NULL)
+    {
+        removerFila(fila);
+    }
+}

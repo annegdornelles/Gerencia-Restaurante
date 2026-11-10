@@ -1,18 +1,22 @@
 #ifndef PILHA_H
 #define PILHA_H
-typedef struct Prato{
+
+typedef struct Prato
+{
     struct Prato *prox;
 } Prato;
 
-typedef struct Pilha{
+typedef struct Pilha
+{
     Prato *topo;
     int quant;
-}Pilha;
+} Pilha;
 
 void inicializarPilha(Pilha *pilha);
-void empilhar(Pilha *pilha);
+int empilhar(Pilha *pilha);
 void desempilhar(Pilha *pilha);
 void imprimirPilha(Pilha *pilha);
 void inserirPratos(Pilha *pilha);
+void esvaziarPilha(Pilha *pilha);
 
 #endif
