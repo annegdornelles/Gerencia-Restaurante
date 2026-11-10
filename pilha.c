@@ -28,7 +28,7 @@ void empilhar(Pilha *pilha){
     pilha->quant++;
 }
 
-void desempilhar(Pilha *pilha){ //talvez tenha que ser tipo int, nao sei =(
+void desempilhar(Pilha *pilha){
     if(pilha->topo == NULL){
         printf("\n Nao ha pratos na pilha\n");
         return;

@@ -26,9 +26,9 @@ void inserirMesas(Restaurante *restaurante);
 
 void inserirGrupo(Restaurante *restaurante);
 
-int ocupaMesa(Restaurante *restaurante, int quantidade, int comanda);
+int ocuparMesa(Restaurante *restaurante, int quantidade, int comanda);
 
-void liberaMesa(Restaurante *restaurante);
+void liberarMesa(Restaurante *restaurante);
 
 void chamarGrupo(Restaurante *restaurante);
 

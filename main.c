@@ -38,7 +38,7 @@ int menu(Restaurante *restaurante) {
                 break;
 
             case 3:
-                liberaMesa(restaurante);
+                liberarMesa(restaurante);
                 break;
 
             case 4:

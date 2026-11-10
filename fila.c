@@ -11,13 +11,13 @@ desistirFilaEspera();
 #include <stdlib.h>
 #include "fila.h"
 
-void inicializaFila(Fila *fila){
+void inicializarFila(Fila *fila){
     fila->inicio=NULL;
     fila->fim=NULL;
     fila->proxSenha = 1;
 }
 
-void insereFila(Fila *fila, int senha, int qtd){
+void inserirFila(Fila *fila, int senha, int qtd){
     Grupo *p = (Grupo*)malloc(sizeof(Grupo));//aloca novo grupo
     if(p==NULL){
         printf("erro ao alocar\n");
@@ -37,7 +37,7 @@ void insereFila(Fila *fila, int senha, int qtd){
     }
 }
 
-void removeFila(Fila *fila){
+void removerFila(Fila *fila){
     if(fila->inicio==NULL){
         return;
     }

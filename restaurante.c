@@ -59,8 +59,8 @@ void inserirMesas(Restaurante *restaurante){
         }
     }
 
-    inicializaFila(&restaurante->fila);
-    inicializaPilha(&restaurante->pilha);
+    inicializarFila(&restaurante->fila);
+    inicializarPilha(&restaurante->pilha);
 
     printf("Seja bem vindo ao restaurante! Estamos abertos!\n");
 }
@@ -88,7 +88,7 @@ void inserirGrupo(Restaurante *restaurante){
         printf("\n Grupo esta na fila de espera");
     }
     else {
-        restantes = ocupaMesa(restaurante, quantidade, senha);
+        restantes = ocuparMesa(restaurante, quantidade, senha);
         if (restantes > 0) {
             inserirFila(&restaurante->fila, senha, restantes);
             printf("\n %d pessoas do grupo estao na fila de espera", restantes);
@@ -99,7 +99,7 @@ void inserirGrupo(Restaurante *restaurante){
     }
 }
 
-int ocupaMesa(Restaurante *restaurante, int quantidade, int comanda){
+int ocuparMesa(Restaurante *restaurante, int quantidade, int comanda){
     int i,j;
     int restantes = quantidade;
 
@@ -141,7 +141,7 @@ void atualizarFila(Restaurante *restaurante){
 
     while(restaurante->fila.inicio!=NULL){
         Grupo *grupo = restaurante->fila.inicio;
-        restantes = ocupaMesa(restaurante, grupo->quantPessoasGrupo, grupo->senha);
+        restantes = ocuparMesa(restaurante, grupo->quantPessoasGrupo, grupo->senha);
 
         if (restantes == 0){
             printf("\n Grupo com senha %d foi acomodado no restaurante", grupo->senha);
@@ -166,7 +166,7 @@ void chamarGrupo(Restaurante *restaurante) {
     atualizarFila(restaurante);
 }
 
-void liberaMesa(Restaurante *restaurante){
+void liberarMesa(Restaurante *restaurante){
     int numero;
     int i, j;
     int encontrou = 0;
@@ -223,7 +223,7 @@ void desistirFilaEspera(Restaurante *restaurante) {
     printf("Senha do grupo que deseja desistir: ");
     scanf("%d", &senha);
 
-    if (removeGrupo(&restaurante->fila, senha)) {
+    if (removerGrupo(&restaurante->fila, senha)) {
         printf("Grupo removido da fila\n");
         atualizarFila(restaurante);
     } 
