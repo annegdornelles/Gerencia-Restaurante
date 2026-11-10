@@ -36,6 +36,7 @@ void insereFila(Fila *fila, int senha, int qtd){
         fila->fim = p;
     }
 }
+
 void removeFila(Fila *fila){
     if(fila->inicio==NULL){
         return;

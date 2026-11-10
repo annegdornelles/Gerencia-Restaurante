@@ -55,6 +55,7 @@ void inserirMesas(Restaurante *restaurante){
             restaurante->mesas[i][j].quantPessoasMesa = 0;
             restaurante->mesas[i][j].comanda = 0;
             restaurante->mesas[i][j].quantPratos = 4;
+             restaurante->mesas[i][j].quantPratosDisp = 4;
         }
     }
 
